@@ -32,12 +32,12 @@ h1 {
 .grid-item {
   width: 250px;
   margin: 10px;
-  background: white;
+  /*background: white;*/
   overflow: hidden;
   transition: transform 0.5s ;
 }
 .grid-item:hover {
-  transform: scale(1.05);
+    border: #ffff15;
   z-index: 10;
 }
 
