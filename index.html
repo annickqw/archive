@@ -42,10 +42,9 @@
 
     // rommelig effect
     grid.querySelectorAll('.grid-item').forEach(el => {
-      const r = (Math.random()*6)-3;   // -3°..+3°
       const x = (Math.random()*8)-4;   // -4..+4px
       const y = (Math.random()*8)-4;
-      el.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
+      el.style.transform = `translate(${x}px, ${y}px)`;
     });
 
     const iso = new Isotope(grid, { 

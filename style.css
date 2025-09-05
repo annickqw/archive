@@ -21,7 +21,7 @@ h1 {
   border-radius: 5px;
 }
 .filters button:hover {
-  background: #ddd;
+  background: #4f2cfa;
 }
 
 .grid {
@@ -30,11 +30,9 @@ h1 {
 }
 
 .grid-item {
-  width: 250px;
+  width: 300px;
   margin: 10px;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   overflow: hidden;
   transition: transform 0.2s;
 }
