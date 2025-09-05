@@ -2,7 +2,13 @@
   "img1.jpg": {
     "title": "Cave Study",
     "date": "2025-03-10",
-    "tags": ["installation","texture"],
+    "tags": ["typo","poster"],
+    "desc": "UV-mapped pointcloud experiment met noise."
+  },
+  "img2.jpg" :{
+    "title": "Cave Study",
+    "date": "2025-03-10",
+    "tags": ["instalatie"],
     "desc": "UV-mapped pointcloud experiment met noise."
   }
 }
