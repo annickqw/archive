@@ -19,6 +19,15 @@
   <!-- Hier komt Isotope grid -->
   <div class="grid"></div>
 
+
+
+
+
+
+
+
+
+
   <!-- Isotope lib -->
   <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
   <script>
@@ -42,8 +51,8 @@
 
     // rommelig effect
     grid.querySelectorAll('.grid-item').forEach(el => {
-      const x = (Math.random()*8)-4;   // -4..+4px
-      const y = (Math.random()*8)-4;
+      const x = (Math.random()*80)-4;   // -4..+4px
+      const y = (Math.random()*80)-4;
       el.style.transform = `translate(${x}px, ${y}px)`;
     });
 
