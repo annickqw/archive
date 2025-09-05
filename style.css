@@ -31,14 +31,16 @@ h1 {
 
 .grid-item {
   width: 250px;
-  margin: 10px;
+  margin: 5px;
   /*background: white;*/
   overflow: hidden;
   transition: transform 0.5s ;
 }
 .grid-item:hover {
-    border: #ffff15;
+    border-color: #ffff15;
+    border-radius: 3%;
   z-index: 10;
+
 }
 
 .grid-item img {
@@ -47,5 +49,5 @@ h1 {
 }
 
 .meta {
-  padding: 10px;
+  padding: 5px;
 }
