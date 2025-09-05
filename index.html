@@ -49,15 +49,11 @@
         </div>`;
     }).join('');
 
-    // rommelig effect
-    grid.querySelectorAll('.grid-item').forEach(el => {
-      const x = (Math.random()*80)-4;   // -4..+4px
-      const y = (Math.random()*80)-4;
-      el.style.transform = `translate(${x}px, ${y}px)`;
-    });
+ 
 
     const iso = new Isotope(grid, { 
       itemSelector: '.grid-item',
+      columnWidth: 50,
       layoutMode: 'masonry'
     });
 
