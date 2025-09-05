@@ -2,15 +2,65 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mijn Website</title>
-  <link rel="stylesheet" href="style.css"> <!-- optioneel: voor je CSS -->
+  <title>Mijn Archief</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Welkom op mijn site!</h1>
-  <p>Dit is mijn eerste pagina gehost via Netlify 🚀</p>
+  <h1>Mijn Archief</h1>
 
-  <!-- optioneel: eigen script -->
-  <script src="script.js"></script>
+  <!-- Filter knoppen -->
+  <div class="filters">
+    <button data-filter="*">Alles</button>
+    <button data-filter=".poster">Posters</button>
+    <button data-filter=".installation">Installaties</button>
+    <button data-filter=".texture">Textures</button>
+  </div>
+
+  <!-- Hier komt Isotope grid -->
+  <div class="grid"></div>
+
+  <!-- Isotope lib -->
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script>
+  async function initArchive() {
+    const res = await fetch('data/archive.json');
+    const items = await res.json();
+    const grid = document.querySelector('.grid');
+
+    grid.innerHTML = items.map(it => {
+      const classes = it.tags.map(t => t.toLowerCase()).join(' ');
+      return `
+        <div class="grid-item ${classes}">
+          <img src="${it.img}" alt="${it.title}" loading="lazy">
+          <div class="meta">
+            <h3>${it.title}</h3>
+            <p>${it.desc}</p>
+            <small>${it.date} — ${it.tags.join(', ')}</small>
+          </div>
+        </div>`;
+    }).join('');
+
+    // rommelig effect
+    grid.querySelectorAll('.grid-item').forEach(el => {
+      const r = (Math.random()*6)-3;   // -3°..+3°
+      const x = (Math.random()*8)-4;   // -4..+4px
+      const y = (Math.random()*8)-4;
+      el.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
+    });
+
+    const iso = new Isotope(grid, { 
+      itemSelector: '.grid-item',
+      layoutMode: 'masonry'
+    });
+
+    // filter buttons
+    document.querySelectorAll('.filters [data-filter]').forEach(btn=>{
+      btn.addEventListener('click', ()=> {
+        iso.arrange({ filter: btn.dataset.filter });
+      });
+    });
+  }
+  initArchive();
+  </script>
 </body>
 </html>

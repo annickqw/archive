@@ -1,0 +1,7 @@
+{
+  "name": "mijn-archief",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node scripts/generate-archive.js"
+  }
+}
