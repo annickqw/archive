@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title>Mijn Archief</title>
   <link rel="stylesheet" href="style.css">
+
+  <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 </head>
 <body>
   <h1>Mijn Archief</h1>
@@ -22,7 +25,6 @@
 </div>
 
   <!-- Isotope lib -->
-  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 <script>
 async function initArchive() {
   const res = await fetch('data/archive.json');
