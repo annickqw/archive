@@ -31,9 +31,9 @@ h1 {
 
 .grid { margin: 10px; }
 
-.grid-sizer, .grid-item { width: 25%; }          /* 4 kolommen desktop */
-@media (max-width: 1000px){ .grid-sizer, .grid-item { width: 33.333%; } } /* 3 col */
-@media (max-width: 700px) { .grid-sizer, .grid-item { width: 50%; } }     /* 2 col */
+.grid-sizer, .grid-item { width: 23%; }          
+@media (max-width: 1000px){ .grid-sizer, .grid-item { width: 33%; } } /* 3 col */
+@media (max-width: 700px) { .grid-sizer, .grid-item { width: 49%; } }     /* 2 col */
 @media (max-width: 420px) { .grid-sizer, .grid-item { width: 100%; } }    /* 1 col */
 
 .grid-item {
@@ -45,7 +45,8 @@ h1 {
 
 .grid-item img {
   width: 100%;
-  aspect-ratio: 1 / 1;       /* visueel gelijk; grote kleiner, kleine groter */
+  height: auto;
+  max-height: 70vh;
   object-fit: cover;
   display: block;
 }
