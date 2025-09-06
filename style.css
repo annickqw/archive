@@ -2,7 +2,7 @@ body {
   font-family: 'Times New Roman', Times, serif ;
   margin: 20px;
   background: #ffffff;
-  color: #b3bfff;
+  color: #710000;
 }
 
 h1 {
@@ -17,32 +17,46 @@ h1 {
   margin-right: 5px;
   padding: 6px 12px;
   border: none;
-  background: #fdffa3;
-  color: #b3bfff;
+  background: #bebebe;
+  color: #b8f4ff;
 
   cursor: pointer;
   border-radius: 5px;
 }
 .filters button:hover {
-  background: #b3bfff;
-  color: #fdffa3;
+  background: #b8f4ff;
+  color: #bebebe;
 }
 
 .grid {
   margin: 30 auto;
 }
 
-.grid-item {
-  width: 250px;
-  margin: 5px;
-  /*background: white;*/
-  overflow: hidden;
-  transition: transform 0.5s ;
+.grid-sizer {
+  width: 220px;  /* bepaalt de kolombreedte */
 }
+
+.grid-item {
+  width: 220px;               /* zelfde breedte als sizer */
+  margin-bottom: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f4f4f4;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 220px;              /* vaste hoogte */
+  object-fit: cover;          /* alles vullen/snijden */
+  display: block;
+  transition: transform 0.5s ;
+
+}
+
 .grid-item:hover {
   border-style: solid;
-  border-width: 10px;
-  border-color: #fdffa3;
+  border-width: 7px;
+  border-color: #b8f4ff;
   z-index: 10;
 
 }

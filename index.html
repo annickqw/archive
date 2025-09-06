@@ -17,7 +17,9 @@
   </div>
 
   <!-- Hier komt Isotope grid -->
-  <div class="grid"></div>
+  <div class="grid">
+  <div class="grid-sizer"></div>
+</div>
 
   <!-- Isotope lib -->
   <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
@@ -43,14 +45,14 @@
  
 
     const iso = new Isotope(grid, { 
-      itemSelector: '.grid-item',
-      //columnWidth: 50,
-      layoutMode: 'cellsByRow',
-      cellsByRow: {
-        columnWidth: 110,
-        rowHeight: 110
-      }
-    });
+  itemSelector: '.grid-item',
+  layoutMode: 'masonry',
+  masonry: {
+    columnWidth: '.grid-sizer',
+    gutter: 12,
+    fitWidth: true   // zorgt dat de rijen netjes gecentreerd zijn
+  }
+});
 
     // filter buttons
     document.querySelectorAll('.filters [data-filter]').forEach(btn=>{
