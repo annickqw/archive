@@ -1,31 +1,32 @@
 body {
   font-family: 'Times New Roman', Times, serif ;
-  margin: 20px;
+  margin: auto;;
   background: #ffffff;
   color: #710000;
 }
 
 h1 {
-  margin-bottom: 1rem;
+  margin: auto;
 }
 
 .filters {
-  margin-bottom: 1rem;
+  margin: auto;
+  
 }
 .filters button {
   font-family: 'Times New Roman', Times, serif ;
   margin-right: 5px;
   padding: 6px 12px;
   border: none;
-  background: #710000;
-  color: #b8f4ff;
+  background:#b8f4ff;
+  color:  #710000;
 
   cursor: pointer;
   border-radius: 5px;
 }
 .filters button:hover {
-  background: #b8f4ff;
-  color: #710000;
+  background:  #710000;
+  color: #b8f4ff;
 }
 
 
@@ -50,9 +51,11 @@ h1 {
   border-style: solid;
   border-width: 7px;
   border-color: #b8f4ff;
+  border-radius: 3%;
   z-index: 10;
 
 }
 .meta {
   padding: 5px;
+  background: #ffffff;
 }
