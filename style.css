@@ -1,43 +1,53 @@
 body {
-  font-family: 'Times New Roman', Times, serif ;
-  margin: 10%;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0; /* geen procenten meer */
   background: #ffffff;
   color: #710000;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* alles gecentreerd behalve filters */
 }
 
+/* Titel netjes gecentreerd */
 h1 {
-  margin: 10%;
+  margin: 2rem 0;
+  text-align: center;
 }
 
+/* Filters links uitlijnen, maar binnen de centrale flow */
 .filters {
-  margin: 10%;
-  
+  align-self: flex-start; /* forceer links */
+  margin: 1rem 0 2rem 10%; /* links iets inspringen, speel met deze waarde */
 }
+
 .filters button {
-  font-family: 'Times New Roman', Times, serif ;
+  font-family: 'Times New Roman', Times, serif;
   margin-right: 5px;
   padding: 6px 12px;
   border: none;
-  background:#b8f4ff;
-  color:  #710000;
-
+  background: #b8f4ff;
+  color: #710000;
   cursor: pointer;
   border-radius: 5px;
 }
 .filters button:hover {
-  background:  #710000;
+  background: #710000;
   color: #b8f4ff;
 }
 
-
-.grid { margin: 0 auto; }
+/* Grid gecentreerd */
+.grid {
+  margin: 0 auto;
+  width: 80%; /* of wat je wilt */
+}
 
 .grid-sizer, .grid-item { 
-  width: 24%; 
+  width: 24%;
+}
 
-}          
-
-@media (max-width: 420px) { .grid-sizer, .grid-item { width: 100%; } }    /* 1 col */
+@media (max-width: 420px) {
+  .grid-sizer, .grid-item { width: 100%; }
+}
 
 .grid-item img {
   width: 100%;
@@ -53,8 +63,8 @@ h1 {
   border-color: #b8f4ff;
   border-radius: 2%;
   z-index: 10;
-
 }
+
 .meta {
   padding: 5px;
   background: #ffffff;
