@@ -23,47 +23,51 @@
 
   <!-- Isotope lib -->
   <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-  <script>
-  async function initArchive() {
-    const res = await fetch('data/archive.json');
-    const items = await res.json();
-    const grid = document.querySelector('.grid');
+<script>
+async function initArchive() {
+  const res = await fetch('data/archive.json');
+  const items = await res.json();
+  const grid = document.querySelector('.grid');
 
-    grid.innerHTML = items.map(it => {
-      const classes = it.tags.map(t => t.toLowerCase()).join(' ');
-      return `
-        <div class="grid-item ${classes}">
-          <img src="${it.img}" alt="${it.title}" loading="lazy">
-          <div class="meta">
-            <h3>${it.title}</h3>
-            <p>${it.desc}</p>
-            <small>${it.date} — ${it.tags.join(', ')}</small>
-          </div>
-        </div>`;
-    }).join('');
+  // items HTML opbouwen
+  const html = items.map(it => {
+    const classes = (it.tags || []).map(t => String(t).toLowerCase()).join(' ');
+    return `
+      <div class="grid-item ${classes}">
+        <img src="${it.img}" alt="${it.title}" loading="lazy">
+        <div class="meta">
+          <h3>${it.title}</h3>
+          <p>${it.desc || ''}</p>
+          <small>${it.date || ''} — ${(it.tags || []).join(', ')}</small>
+        </div>
+      </div>`;
+  }).join('');
 
- 
+  // NIET overschrijven; append na de bestaande .grid-sizer
+  grid.insertAdjacentHTML('beforeend', html);
 
+  // Wacht tot afbeeldingen gemeten zijn
+  imagesLoaded(grid, () => {
     const iso = new Isotope(grid, { 
-  itemSelector: '.grid-item',
-  layoutMode: 'masonry',
-  masonry: {
-    columnWidth: '.grid-sizer',
-    gutter: 12,
-    fitWidth: true   // zorgt dat de rijen netjes gecentreerd zijn
-  }
-});
+      itemSelector: '.grid-item',
+      layoutMode: 'masonry',
+      masonry: {
+        columnWidth: '.grid-sizer',
+        gutter: 12,
+        fitWidth: true
+      }
+    });
 
-    // filter buttons
-    document.querySelectorAll('.filters [data-filter]').forEach(btn=>{
-      btn.addEventListener('click', ()=> {
+    // filters
+    document.querySelectorAll('.filters [data-filter]').forEach(btn => {
+      btn.addEventListener('click', () => {
         iso.arrange({ filter: btn.dataset.filter });
       });
     });
-  }
-  initArchive();
-      
-  </script>
+  });
+}
+initArchive();
+</script>
 
 </body>
 </html>
