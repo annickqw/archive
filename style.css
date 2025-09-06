@@ -42,7 +42,7 @@ h1 {
 }
 
 .grid-sizer, .grid-item { 
-  width: 23%;
+  width: 19%;
   margin: 2%;
 }
 
@@ -64,7 +64,6 @@ h1 {
   border-width: 10px;
   border-color: #b8f4ff;
   border-radius: 2%;
-  z-index: 10;
 }
 
 .meta {
