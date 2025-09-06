@@ -43,7 +43,9 @@ h1 {
 
 .grid-sizer, .grid-item { 
   width: 24%;
+  margin-bottom: 5px;
 }
+
 
 @media (max-width: 420px) {
   .grid-sizer, .grid-item { width: 100%; }
