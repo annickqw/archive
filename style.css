@@ -17,7 +17,7 @@ h1 {
   margin-right: 5px;
   padding: 6px 12px;
   border: none;
-  background: #bebebe;
+  background: #710000;
   color: #b8f4ff;
 
   cursor: pointer;
@@ -25,23 +25,18 @@ h1 {
 }
 .filters button:hover {
   background: #b8f4ff;
-  color: #bebebe;
+  color: #710000;
 }
 
 
-.grid { margin: 10px; }
+.grid { margin: 0 auto; }
 
 .grid-sizer, .grid-item { width: 23%; }          
 @media (max-width: 1000px){ .grid-sizer, .grid-item { width: 33%; } } /* 3 col */
 @media (max-width: 700px) { .grid-sizer, .grid-item { width: 49%; } }     /* 2 col */
 @media (max-width: 420px) { .grid-sizer, .grid-item { width: 100%; } }    /* 1 col */
 
-.grid-item {
-  margin-bottom: 12px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #f4f4f4;
-}
+
 
 .grid-item img {
   width: 100%;
