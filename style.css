@@ -1,8 +1,8 @@
 body {
   font-family: 'Times New Roman', Times, serif ;
   margin: 20px;
-  background: #000000;
-  color: #fdff95;
+  background: #ffffff;
+  color: #650808;
 }
 
 h1 {
@@ -13,15 +13,19 @@ h1 {
   margin-bottom: 1rem;
 }
 .filters button {
+  font-family: 'Times New Roman', Times, serif ;
   margin-right: 5px;
   padding: 6px 12px;
   border: none;
-  background: #d3d3d3;
+  background: #fdffa3;
+  color: #650808;
+
   cursor: pointer;
   border-radius: 5px;
 }
 .filters button:hover {
-  background: #5e0000;
+  background: #fdffa3;
+  color: #650808;
 }
 
 .grid {
@@ -36,8 +40,9 @@ h1 {
   transition: transform 0.5s ;
 }
 .grid-item:hover {
+  border-style: solid;
   border-width: 3px;
-    border-color: #ffff15;
+  border-color: #fdffa3;
   z-index: 10;
 
 }
