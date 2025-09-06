@@ -38,12 +38,12 @@ h1 {
 /* Grid gecentreerd */
 .grid {
   margin: 0 auto;
-  width: 80%; /* of wat je wilt */
+  width: 95%; /* of wat je wilt */
 }
 
 .grid-sizer, .grid-item { 
   width: 24%;
-  margin-bottom: 5px;
+  margin: 3%;
 }
 
 
