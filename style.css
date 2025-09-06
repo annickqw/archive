@@ -31,12 +31,12 @@ h1 {
 
 .grid { margin: 0 auto; }
 
-.grid-sizer, .grid-item { width: 23%; }          
-@media (max-width: 1000px){ .grid-sizer, .grid-item { width: 33%; } } /* 3 col */
-@media (max-width: 700px) { .grid-sizer, .grid-item { width: 49%; } }     /* 2 col */
+.grid-sizer, .grid-item { 
+  width: 24%; 
+
+}          
+
 @media (max-width: 420px) { .grid-sizer, .grid-item { width: 100%; } }    /* 1 col */
-
-
 
 .grid-item img {
   width: 100%;
@@ -53,12 +53,6 @@ h1 {
   z-index: 10;
 
 }
-
-.grid-item img {
-  width: 100%;
-  display: block;
-}
-
 .meta {
   padding: 5px;
 }
