@@ -17,7 +17,7 @@ h1 {
 /* Filters links uitlijnen, maar binnen de centrale flow */
 .filters {
   align-self: flex-start; /* forceer links */
-  margin: 1rem 0 2rem 10%; /* links iets inspringen, speel met deze waarde */
+  margin: 0 auto;
 }
 
 .filters button {
@@ -38,12 +38,12 @@ h1 {
 /* Grid gecentreerd */
 .grid {
   margin: 0 auto;
-  width: 97%; /* of wat je wilt */
+  width: 96%; /* of wat je wilt */
 }
 
 .grid-sizer, .grid-item { 
   width: 23%;
-  margin: 1%;
+  margin: 2%;
 }
 
 
