@@ -23,7 +23,7 @@
   <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
   <script>
   async function initArchive() {
-    const res = await fetch('data/meta.json');
+    const res = await fetch('data/archive.json');
     const items = await res.json();
     const grid = document.querySelector('.grid');
 
