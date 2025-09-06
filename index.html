@@ -45,7 +45,11 @@
     const iso = new Isotope(grid, { 
       itemSelector: '.grid-item',
       //columnWidth: 50,
-      layoutMode: 'cellsByColumn'
+      layoutMode: 'cellsByRow',
+      cellsByRow: {
+        columnWidth: 110,
+        rowHeight: 110
+      }
     });
 
     // filter buttons
