@@ -8,10 +8,10 @@ public_folder: "/uploads"
 collections:
   - name: "meta"
     label: "Foto's"
-    folder: "data/meta"
+    folder: "data"
     create: true
     slug: "{{slug}}"
-    path: "{{slug}}/meta.json"
+    path: "{{slug}}.json"
     format: "json"
     fields:
       - {label: "Titel", name: "title", widget: "string"}

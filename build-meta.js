@@ -1,33 +1,30 @@
 // build-meta.js
-// Combineert alle meta.json bestanden uit /data/meta/**/meta.json
+// Combineert alle losse .json bestanden uit /data/*.json
 // en schrijft 1 bestand: /data/all-meta.json
 
 const fs = require("fs");
 const path = require("path");
 
-const metaDir = path.join(process.cwd(), "data", "meta");
-const outFile = path.join(process.cwd(), "data", "all-meta.json");
+const dataDir = path.join(process.cwd(), "data");
+const outFile = path.join(dataDir, "all-meta.json");
 
 function collectMeta(dir) {
     const items = [];
 
     if (!fs.existsSync(dir)) {
-        console.error("❌ Map data/meta bestaat niet.");
+        console.error("❌ Map data bestaat niet.");
         return items;
     }
 
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
-    for (const entry of entries) {
-        if (entry.isDirectory()) {
-            const metaPath = path.join(dir, entry.name, "meta.json");
-            if (fs.existsSync(metaPath)) {
-                try {
-                    const raw = fs.readFileSync(metaPath, "utf8");
-                    const data = JSON.parse(raw);
-                    items.push(data);
-                } catch (err) {
-                    console.error("⚠️ Fout in JSON:", metaPath, err);
-                }
+    const files = fs.readdirSync(dir);
+    for (const file of files) {
+        if (file.endsWith(".json") && file !== "all-meta.json") {
+            try {
+                const raw = fs.readFileSync(path.join(dir, file), "utf8");
+                const data = JSON.parse(raw);
+                items.push(data);
+            } catch (err) {
+                console.error("⚠️ Fout in JSON:", file, err);
             }
         }
     }
@@ -36,8 +33,7 @@ function collectMeta(dir) {
 }
 
 function build() {
-    const allItems = collectMeta(metaDir);
-
+    const allItems = collectMeta(dataDir);
     fs.writeFileSync(outFile, JSON.stringify(allItems, null, 2), "utf8");
     console.log(`✅ ${allItems.length} items samengevoegd naar ${outFile}`);
 }
