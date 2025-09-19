@@ -1,7 +1,7 @@
 
 backend:
   name: github
-  repo: jouwgebruikersnaam/annickqw/archivesite
+  repo: jouwgebruikersnaam/annickqw/archives
   branch: main
   auth_scope: repo
 
