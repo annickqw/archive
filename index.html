@@ -27,12 +27,12 @@
 <script>
 async function initArchive() {
   try {
-    // laad alle items uit all-meta.json
+    // laad alle items direct uit all-meta.json
     const res = await fetch('data/all-meta.json');
     const items = await res.json();
     const grid = document.querySelector('.grid');
 
-    // HTML opbouwen
+    // bouw HTML
     const html = items.map(it => {
       const classes = (it.tags || []).map(t => String(t).toLowerCase()).join(' ');
       return `
@@ -46,10 +46,10 @@ async function initArchive() {
         </div>`;
     }).join('');
 
-    // Voeg items toe aan grid
+    // items toevoegen aan grid
     grid.insertAdjacentHTML('beforeend', html);
 
-    // Wacht tot alle afbeeldingen geladen zijn
+    // isotope initialiseren na laden van alle afbeeldingen
     imagesLoaded(grid, () => {
       const iso = new Isotope(grid, {
         itemSelector: '.grid-item',
@@ -59,7 +59,7 @@ async function initArchive() {
         }
       });
 
-      // filter knoppen activeren
+      // filters
       document.querySelectorAll('.filters [data-filter]').forEach(btn => {
         btn.addEventListener('click', () => {
           iso.arrange({ filter: btn.dataset.filter });
@@ -73,6 +73,7 @@ async function initArchive() {
 
 initArchive();
 </script>
+
 
 </body>
 </html>
