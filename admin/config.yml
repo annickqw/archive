@@ -1,10 +1,6 @@
-
 backend:
-  name: github
-  repo: annickqw/archive
+  name: git-gateway
   branch: main
-  base_url: https://archivesite.netlify.app
-  auth_endpoint: auth
 
 media_folder: "static/uploads"
 public_folder: "/uploads"
