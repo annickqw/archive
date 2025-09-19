@@ -102,6 +102,53 @@ async function initArchive() {
 }
 
 initArchive();
+initArchive().then(() => initModal());
+
+
+function initModal() {
+  const modal = document.getElementById("modal");
+  const modalBody = document.getElementById("modal-body");
+  const modalClose = document.getElementById("modal-close");
+
+  // sluiten
+  modalClose.addEventListener("click", () => modal.classList.add("hidden"));
+  modal.addEventListener("click", e => {
+    if (e.target === modal) modal.classList.add("hidden");
+  });
+
+  // event op items
+  document.querySelectorAll(".grid-item").forEach(item => {
+    item.addEventListener("click", () => {
+      const type = item.dataset.type;
+      modalBody.innerHTML = "";
+
+      if (type === "photo") {
+        const img = item.querySelector("img").src;
+        modalBody.innerHTML = `<img src="${img}" alt="">`;
+      }
+
+      if (type === "pdf") {
+        const link = item.querySelector("a")?.getAttribute("href");
+        if (link) {
+          modalBody.innerHTML = `<iframe src="${link}" width="100%" height="100%"></iframe>`;
+        }
+      }
+
+      if (type === "text") {
+        const clone = item.querySelector(".meta").innerHTML;
+        modalBody.innerHTML = `<div style="color:white; max-width:600px">${clone}</div>`;
+      }
+
+      if (type === "link") {
+        const url = item.querySelector("a").href;
+        modalBody.innerHTML = `<iframe src="${url}" width="100%" height="100%"></iframe>`;
+      }
+
+      modal.classList.remove("hidden");
+    });
+  });
+}
+
 </script>
 
 
