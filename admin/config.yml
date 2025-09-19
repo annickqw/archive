@@ -8,18 +8,21 @@ public_folder: "/uploads"
 collections:
   - name: "content"
     label: "Inhoud"
-    file: "data/content.json"
-    format: "json"
-    fields:
-      - label: "Items"
-        name: "items"
-        widget: "list"
+    files:
+      - file: "data/content.json"
+        label: "Content"
+        name: "content"
+        format: "json"
         fields:
-          - {label: "Type", name: "type", widget: "select", options: ["photo", "text", "pdf", "link"]}
-          - {label: "Titel", name: "title", widget: "string"}
-          - {label: "Beschrijving / Tekst", name: "body", widget: "markdown", required: false}
-          - {label: "Afbeelding", name: "img", widget: "image", required: false}
-          - {label: "PDF", name: "pdf", widget: "file", required: false}
-          - {label: "Link", name: "url", widget: "string", required: false}
-          - {label: "Datum", name: "date", widget: "datetime"}
-          - {label: "Tags", name: "tags", widget: "list"}
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Type", name: "type", widget: "select", options: ["photo", "text", "pdf", "link"]}
+              - {label: "Titel", name: "title", widget: "string"}
+              - {label: "Beschrijving / Tekst", name: "body", widget: "markdown", required: false}
+              - {label: "Afbeelding", name: "img", widget: "image", required: false}
+              - {label: "PDF", name: "pdf", widget: "file", required: false}
+              - {label: "Link", name: "url", widget: "string", required: false}
+              - {label: "Datum", name: "date", widget: "datetime"}
+              - {label: "Tags", name: "tags", widget: "list"}

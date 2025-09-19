@@ -2,7 +2,7 @@
   "items": [
     {
       "type": "photo",
-      "title": "Eerste foto",
+      "title": "Eerste testfoto",
       "img": "/uploads/foto1.jpg",
       "desc": "Een testafbeelding",
       "date": "2025-09-18",
@@ -17,7 +17,7 @@
     },
     {
       "type": "pdf",
-      "title": "Handleiding installatie",
+      "title": "Handleiding",
       "pdf": "/uploads/handleiding.pdf",
       "date": "2025-09-18",
       "tags": ["document"]

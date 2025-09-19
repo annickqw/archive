@@ -42,7 +42,7 @@ async function initArchive() {
             <img src="${it.img}" alt="${it.title}" loading="lazy">
             <div class="meta">
               <h3>${it.title}</h3>
-              <p>${it.desc || ""}</p>
+              <p>${it.desc || it.body || ""}</p>
               <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
             </div>`;
           break;
@@ -103,6 +103,7 @@ async function initArchive() {
 
 initArchive();
 </script>
+
 
 
 
