@@ -1,0 +1,21 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "static/uploads"   # waar uploads fysiek in de repo komen
+public_folder: "/uploads"        # hoe ze online bereikbaar zijn
+
+collections:
+  - name: "meta"
+    label: "Foto’s"
+    folder: "data/meta"
+    create: true
+    slug: "{{slug}}"
+    path: "{{slug}}/meta.json"   # <--- elk item krijgt zijn eigen meta.json
+    format: "json"
+    fields:
+      - {label: "Titel", name: "title", widget: "string"}
+      - {label: "Afbeelding", name: "img", widget: "image"}
+      - {label: "Beschrijving", name: "desc", widget: "text"}
+      - {label: "Datum", name: "date", widget: "datetime"}
+      - {label: "Tags", name: "tags", widget: "list"}

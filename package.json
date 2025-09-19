@@ -1,7 +1,6 @@
 {
-  "name": "mijn-archief",
-  "version": "1.0.0",
   "scripts": {
-    "build": "node scripts/generate-archive.js"
+    "build:meta": "node build-meta.js",
+    "build": "npm run build:meta && <jouw gewone build command>"
   }
 }
