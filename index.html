@@ -9,6 +9,9 @@
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+
 
 </head>
 <body>
@@ -42,7 +45,7 @@ async function initArchive() {
     switch (it.type) {
   case "photo":
     content = `
-      <a href="${it.img}" data-lightbox="gallery" data-title="${it.title}">
+      <a data-fancybox="gallery" data-caption="${it.title}" href="${it.img}">
         <img src="${it.img}" alt="${it.title}" loading="lazy">
       </a>
       <div class="meta">
@@ -54,28 +57,38 @@ async function initArchive() {
 
   case "text":
     content = `
-      <div class="meta">
-        <h3>${it.title}</h3>
+      <a data-fancybox data-type="inline" data-src="#text-${classes}">
+        <div class="meta">
+          <h3>${it.title}</h3>
+          <p>${it.body || ""}</p>
+          <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
+        </div>
+      </a>
+      <div style="display:none;" id="text-${classes}">
+        <h2>${it.title}</h2>
         <p>${it.body || ""}</p>
-        <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
       </div>`;
     break;
 
   case "pdf":
     content = `
-      <div class="meta">
-        <h3>${it.title}</h3>
-        <a href="${it.pdf}" target="_blank">Bekijk PDF</a>
-        <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
-      </div>`;
+      <a data-fancybox data-type="iframe" data-src="${it.pdf}" href="javascript:;">
+        <div class="meta">
+          <h3>${it.title}</h3>
+          <p>Klik om PDF te bekijken</p>
+          <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
+        </div>
+      </a>`;
     break;
 
   case "link":
     content = `
-      <div class="meta">
-        <h3><a href="${it.url}" target="_blank">${it.title}</a></h3>
-        <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
-      </div>`;
+      <a data-fancybox data-type="iframe" data-src="${it.url}" href="javascript:;">
+        <div class="meta">
+          <h3>${it.title}</h3>
+          <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
+        </div>
+      </a>`;
     break;
 
   default:
@@ -83,6 +96,7 @@ async function initArchive() {
 }
 
 return `<div class="grid-item ${classes}">${content}</div>`;
+
 
     }).join('');
 
