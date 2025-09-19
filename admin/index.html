@@ -1,25 +1,28 @@
 <!doctype html>
-<html lang="nl">
+<html>
 <head>
   <meta charset="utf-8"/>
   <title>Content Manager</title>
 </head>
 <body>
-  <!-- Netlify Identity widget (login / password reset) -->
+  <!-- Netlify Identity widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <!-- Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms-app/dist/netlify-cms.js"></script>
 
-  <!-- Script om redirect te fixen na login -->
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
+          // toon de login popup direct
+          window.netlifyIdentity.open();
         }
+      });
+
+      // na inloggen herlaad de pagina zodat CMS werkt
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
       });
     }
   </script>
