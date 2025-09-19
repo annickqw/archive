@@ -2,32 +2,10 @@
   "items": [
     {
       "type": "photo",
-      "title": "Eerste testfoto",
-      "img": "/uploads/foto1.jpg",
-      "desc": "Een testafbeelding",
-      "date": "2025-09-18",
-      "tags": ["poster"]
-    },
-    {
-      "type": "text",
-      "title": "Notitie 1",
-      "body": "Dit is een korte tekst",
-      "date": "2025-09-18",
-      "tags": ["gedachte"]
-    },
-    {
-      "type": "pdf",
-      "title": "Handleiding",
-      "pdf": "/uploads/handleiding.pdf",
-      "date": "2025-09-18",
-      "tags": ["document"]
-    },
-    {
-      "type": "link",
-      "title": "Mijn portfolio",
-      "url": "https://example.com",
-      "date": "2025-09-18",
-      "tags": ["extern"]
+      "title": "ferefr",
+      "body": "f3fr43e2",
+      "img": "/uploads/img-20250913-wa0013.jpg",
+      "date": "2025-09-19T17:48:00.000+02:00"
     }
   ]
 }
