@@ -1,20 +1,13 @@
 {
   "items": [
     {
-      "type": "photo",
-      "title": "ferefr",
-      "body": "f3fr43e2",
-      "img": "/uploads/img-20250913-wa0013.jpg",
-      "date": "2025-09-19T17:48:00.000+02:00"
-    },
-    {
-      "type": "photo",
-      "title": "jo",
-      "body": "jo",
-      "img": "/uploads/ab67616d0000b273d1a1b8c7590666fb6867d5a3.jpg",
-      "date": "2025-09-19T18:05:00.000+02:00",
+      "type": "pdf",
+      "title": "Workshop briefing",
+      "body": "De workshop die ik heb gegeven over coderen met p5.js",
+      "pdf": "/uploads/workshop-lesbrief.pdf",
+      "date": "2025-09-11T15:00:00.000+02:00",
       "tags": [
-        "Typografie"
+        "workshopLyanne"
       ]
     }
   ]
