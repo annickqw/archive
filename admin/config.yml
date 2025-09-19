@@ -2,24 +2,24 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/uploads"     # in je repo
-public_folder: "/uploads"          # op je site
+media_folder: "static/uploads"
+public_folder: "/uploads"
 
 collections:
-  - name: "meta"
-    label: "Foto's"
-    files:
-      - file: "data/all-meta.json"
-        label: "Foto's"
-        name: "fotos"
-        format: "json"
+  - name: "content"
+    label: "Inhoud"
+    file: "data/content.json"
+    format: "json"
+    fields:
+      - label: "Items"
+        name: "items"
+        widget: "list"
         fields:
-          - label: "Items"
-            name: ""
-            widget: "list"
-            fields:
-              - {label: "Titel", name: "title", widget: "string"}
-              - {label: "Afbeelding", name: "img", widget: "image"}
-              - {label: "Beschrijving", name: "desc", widget: "text"}
-              - {label: "Datum", name: "date", widget: "datetime"}
-              - {label: "Tags", name: "tags", widget: "list"}
+          - {label: "Type", name: "type", widget: "select", options: ["photo", "text", "pdf", "link"]}
+          - {label: "Titel", name: "title", widget: "string"}
+          - {label: "Beschrijving / Tekst", name: "body", widget: "markdown", required: false}
+          - {label: "Afbeelding", name: "img", widget: "image", required: false}
+          - {label: "PDF", name: "pdf", widget: "file", required: false}
+          - {label: "Link", name: "url", widget: "string", required: false}
+          - {label: "Datum", name: "date", widget: "datetime"}
+          - {label: "Tags", name: "tags", widget: "list"}
