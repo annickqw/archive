@@ -7,6 +7,9 @@
 
   <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
 </head>
 <body>
   <h1>Mijn Archief</h1>
@@ -36,48 +39,51 @@ async function initArchive() {
       const classes = (it.tags || []).map(t => String(t).toLowerCase()).join(' ');
       let content = "";
 
-      switch (it.type) {
-        case "photo":
-          content = `
-            <img src="${it.img}" alt="${it.title}" loading="lazy">
-            <div class="meta">
-              <h3>${it.title}</h3>
-              <p>${it.desc || it.body || ""}</p>
-              <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
-            </div>`;
-          break;
+    switch (it.type) {
+  case "photo":
+    content = `
+      <a href="${it.img}" data-lightbox="gallery" data-title="${it.title}">
+        <img src="${it.img}" alt="${it.title}" loading="lazy">
+      </a>
+      <div class="meta">
+        <h3>${it.title}</h3>
+        <p>${it.desc || it.body || ""}</p>
+        <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
+      </div>`;
+    break;
 
-        case "text":
-          content = `
-            <div class="meta">
-              <h3>${it.title}</h3>
-              <p>${it.body || ""}</p>
-              <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
-            </div>`;
-          break;
+  case "text":
+    content = `
+      <div class="meta">
+        <h3>${it.title}</h3>
+        <p>${it.body || ""}</p>
+        <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
+      </div>`;
+    break;
 
-        case "pdf":
-          content = `
-            <div class="meta">
-              <h3>${it.title}</h3>
-              <a href="${it.pdf}" target="_blank">Bekijk PDF</a>
-              <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
-            </div>`;
-          break;
+  case "pdf":
+    content = `
+      <div class="meta">
+        <h3>${it.title}</h3>
+        <a href="${it.pdf}" target="_blank">Bekijk PDF</a>
+        <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
+      </div>`;
+    break;
 
-        case "link":
-          content = `
-            <div class="meta">
-              <h3><a href="${it.url}" target="_blank">${it.title}</a></h3>
-              <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
-            </div>`;
-          break;
+  case "link":
+    content = `
+      <div class="meta">
+        <h3><a href="${it.url}" target="_blank">${it.title}</a></h3>
+        <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
+      </div>`;
+    break;
 
-        default:
-          content = `<div class="meta"><h3>${it.title}</h3></div>`;
-      }
+  default:
+    content = `<div class="meta"><h3>${it.title}</h3></div>`;
+}
 
-      return `<div class="grid-item ${classes}">${content}</div>`;
+return `<div class="grid-item ${classes}">${content}</div>`;
+
     }).join('');
 
     grid.insertAdjacentHTML('beforeend', html);
@@ -102,52 +108,7 @@ async function initArchive() {
 }
 
 initArchive();
-initArchive().then(() => initModal());
 
-
-function initModal() {
-  const modal = document.getElementById("modal");
-  const modalBody = document.getElementById("modal-body");
-  const modalClose = document.getElementById("modal-close");
-
-  // sluiten
-  modalClose.addEventListener("click", () => modal.classList.add("hidden"));
-  modal.addEventListener("click", e => {
-    if (e.target === modal) modal.classList.add("hidden");
-  });
-
-  // event op items
-  document.querySelectorAll(".grid-item").forEach(item => {
-    item.addEventListener("click", () => {
-      const type = item.dataset.type;
-      modalBody.innerHTML = "";
-
-      if (type === "photo") {
-        const img = item.querySelector("img").src;
-        modalBody.innerHTML = `<img src="${img}" alt="">`;
-      }
-
-      if (type === "pdf") {
-        const link = item.querySelector("a")?.getAttribute("href");
-        if (link) {
-          modalBody.innerHTML = `<iframe src="${link}" width="100%" height="100%"></iframe>`;
-        }
-      }
-
-      if (type === "text") {
-        const clone = item.querySelector(".meta").innerHTML;
-        modalBody.innerHTML = `<div style="color:white; max-width:600px">${clone}</div>`;
-      }
-
-      if (type === "link") {
-        const url = item.querySelector("a").href;
-        modalBody.innerHTML = `<iframe src="${url}" width="100%" height="100%"></iframe>`;
-      }
-
-      modal.classList.remove("hidden");
-    });
-  });
-}
 
 </script>
 
