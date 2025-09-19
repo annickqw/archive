@@ -1,41 +1,45 @@
 // build-meta.js
-import fs from "fs";
-import path from "path";
+// Combineert alle meta.json bestanden uit /data/meta/**/meta.json
+// en schrijft 1 bestand: /data/all-meta.json
 
-// Pad naar de folder waar CMS de meta.json bestanden zet
-const metaDir = path.join(process.cwd(), "data/meta");
+const fs = require("fs");
+const path = require("path");
 
-// Doelbestand: het samengevoegde JSON-bestand
-const outputFile = path.join(process.cwd(), "data/all-meta.json");
+const metaDir = path.join(process.cwd(), "data", "meta");
+const outFile = path.join(process.cwd(), "data", "all-meta.json");
 
-function collectMetaFiles(dir) {
+function collectMeta(dir) {
     const items = [];
 
-    // Submappen uitlezen (elke submap = één item)
-    fs.readdirSync(dir, { withFileTypes: true }).forEach((entry) => {
+    if (!fs.existsSync(dir)) {
+        console.error("❌ Map data/meta bestaat niet.");
+        return items;
+    }
+
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
         if (entry.isDirectory()) {
             const metaPath = path.join(dir, entry.name, "meta.json");
             if (fs.existsSync(metaPath)) {
-                const raw = fs.readFileSync(metaPath, "utf8");
                 try {
+                    const raw = fs.readFileSync(metaPath, "utf8");
                     const data = JSON.parse(raw);
                     items.push(data);
                 } catch (err) {
-                    console.error("Fout in JSON:", metaPath, err);
+                    console.error("⚠️ Fout in JSON:", metaPath, err);
                 }
             }
         }
-    });
+    }
 
     return items;
 }
 
 function build() {
-    const allItems = collectMetaFiles(metaDir);
+    const allItems = collectMeta(metaDir);
 
-    // Alles in één array opslaan
-    fs.writeFileSync(outputFile, JSON.stringify(allItems, null, 2), "utf8");
-    console.log(`✅ ${allItems.length} items samengevoegd naar ${outputFile}`);
+    fs.writeFileSync(outFile, JSON.stringify(allItems, null, 2), "utf8");
+    console.log(`✅ ${allItems.length} items samengevoegd naar ${outFile}`);
 }
 
 build();
