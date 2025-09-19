@@ -20,6 +20,7 @@
   <!-- Filter knoppen -->
   <div class="filters">
     <button data-filter="*">Alles</button>
+    <button data-filter="*">Workshops</button>
     <button data-filter=".poster">Posters</button>
     <button data-filter=".bewegend">Bewegend</button>
     <button data-filter=".typo">Typografie</button>
@@ -70,9 +71,14 @@ async function initArchive() {
       </div>`;
     break;
 
- case "pdf":
+case "pdf": {
+  // maak een absolute URL naar je PDF
+  const pdfAbs = `${location.origin}${it.pdf}`;
+  // gebruik de online PDF.js viewer van Mozilla (heeft zoom + next/prev)
+  const viewer = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(pdfAbs)}`;
+
   content = `
-    <a data-fancybox data-type="iframe" data-src="${it.pdf}" href="${it.pdf}" data-caption="${it.title}">
+    <a data-fancybox data-type="iframe" data-src="${viewer}" href="${it.pdf}" data-caption="${it.title}">
       <div class="meta">
         <h3>${it.title}</h3>
         <p>Klik om PDF te bekijken</p>
@@ -80,6 +86,7 @@ async function initArchive() {
       </div>
     </a>`;
   break;
+}
 
   case "link":
     content = `
