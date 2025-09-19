@@ -1,30 +1,16 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8"/>
-  <title>Content Manager</title>
-</head>
-<body>
-  <!-- Netlify Identity widget -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <!-- Netlify CMS -->
-  <script src="https://unpkg.com/netlify-cms-app/dist/netlify-cms.js"></script>
-
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          // toon de login popup direct
-          window.netlifyIdentity.open();
-        }
-      });
-
-      // na inloggen herlaad de pagina zodat CMS werkt
-      window.netlifyIdentity.on("login", () => {
-        document.location.href = "/admin/";
-      });
-    }
-  </script>
-</body>
-</html>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script src="https://unpkg.com/netlify-cms-app/dist/netlify-cms.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.open();
+      }
+    });
+    window.netlifyIdentity.on("login", () => {
+      document.location.href = "/admin/";
+    });
+  } else {
+    console.error("⚠️ netlifyIdentity niet gevonden");
+  }
+</script>
