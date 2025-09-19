@@ -1,9 +1,16 @@
 [
   {
-    "title": "Test Poster",
-    "img": "/uploads/poster1.jpg",
-    "desc": "Dit is een test item",
-    "date": "2025-09-18T00:00:00.000Z",
-    "tags": ["poster", "typo"]
+    "title": "Eerste testfoto",
+    "img": "/uploads/testfoto1.jpg",
+    "desc": "Dit is een eerste testfoto die ik via het CMS heb toegevoegd.",
+    "date": "2025-09-18T12:00:00Z",
+    "tags": ["poster", "kleur"]
+  },
+  {
+    "title": "Tweede testfoto",
+    "img": "/uploads/testfoto2.jpg",
+    "desc": "Nog een voorbeeld om te checken of de grid werkt.",
+    "date": "2025-09-18T12:30:00Z",
+    "tags": ["typo"]
   }
 ]

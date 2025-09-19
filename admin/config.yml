@@ -2,17 +2,24 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/uploads"     # hier komen de geüploade afbeeldingen terecht in je repo
-public_folder: "/uploads"          # zo worden ze bereikbaar op je site
+media_folder: "static/uploads"     # in je repo
+public_folder: "/uploads"          # op je site
 
 collections:
   - name: "meta"
     label: "Foto's"
-    file: "data/all-meta.json"     # 1 bestand waar ALLE entries inkomen
-    format: "json"
-    fields:
-      - {label: "Titel", name: "title", widget: "string"}
-      - {label: "Afbeelding", name: "img", widget: "image"}
-      - {label: "Beschrijving", name: "desc", widget: "text"}
-      - {label: "Datum", name: "date", widget: "datetime"}
-      - {label: "Tags", name: "tags", widget: "list"}
+    files:
+      - file: "data/all-meta.json"
+        label: "Foto's"
+        name: "fotos"
+        format: "json"
+        fields:
+          - label: "Items"
+            name: ""
+            widget: "list"
+            fields:
+              - {label: "Titel", name: "title", widget: "string"}
+              - {label: "Afbeelding", name: "img", widget: "image"}
+              - {label: "Beschrijving", name: "desc", widget: "text"}
+              - {label: "Datum", name: "date", widget: "datetime"}
+              - {label: "Tags", name: "tags", widget: "list"}
