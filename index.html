@@ -27,52 +27,83 @@
 <script>
 async function initArchive() {
   try {
-    // laad alle items direct uit all-meta.json
-    const res = await fetch('data/all-meta.json');
-    const items = await res.json();
+    const res = await fetch('data/content.json');
+    const data = await res.json();
+    const items = data.items || [];
     const grid = document.querySelector('.grid');
 
-    // bouw HTML
     const html = items.map(it => {
       const classes = (it.tags || []).map(t => String(t).toLowerCase()).join(' ');
-      return `
-        <div class="grid-item ${classes}">
-          <img src="${it.img}" alt="${it.title}" loading="lazy">
-          <div class="meta">
-            <h3>${it.title}</h3>
-            <p>${it.desc || ''}</p>
-            <small>${it.date || ''} — ${(it.tags || []).join(', ')}</small>
-          </div>
-        </div>`;
+      let content = "";
+
+      switch (it.type) {
+        case "photo":
+          content = `
+            <img src="${it.img}" alt="${it.title}" loading="lazy">
+            <div class="meta">
+              <h3>${it.title}</h3>
+              <p>${it.desc || ""}</p>
+              <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
+            </div>`;
+          break;
+
+        case "text":
+          content = `
+            <div class="meta">
+              <h3>${it.title}</h3>
+              <p>${it.body || ""}</p>
+              <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
+            </div>`;
+          break;
+
+        case "pdf":
+          content = `
+            <div class="meta">
+              <h3>${it.title}</h3>
+              <a href="${it.pdf}" target="_blank">Bekijk PDF</a>
+              <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
+            </div>`;
+          break;
+
+        case "link":
+          content = `
+            <div class="meta">
+              <h3><a href="${it.url}" target="_blank">${it.title}</a></h3>
+              <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
+            </div>`;
+          break;
+
+        default:
+          content = `<div class="meta"><h3>${it.title}</h3></div>`;
+      }
+
+      return `<div class="grid-item ${classes}">${content}</div>`;
     }).join('');
 
-    // items toevoegen aan grid
     grid.insertAdjacentHTML('beforeend', html);
 
-    // isotope initialiseren na laden van alle afbeeldingen
     imagesLoaded(grid, () => {
       const iso = new Isotope(grid, {
         itemSelector: '.grid-item',
         layoutMode: 'masonry',
-        masonry: {
-          columnWidth: '.grid-sizer',
-        }
+        masonry: { columnWidth: '.grid-sizer' }
       });
 
-      // filters
       document.querySelectorAll('.filters [data-filter]').forEach(btn => {
         btn.addEventListener('click', () => {
           iso.arrange({ filter: btn.dataset.filter });
         });
       });
     });
+
   } catch (err) {
-    console.error("❌ Fout bij laden all-meta.json:", err);
+    console.error("❌ Fout bij laden content.json:", err);
   }
 }
 
 initArchive();
 </script>
+
 
 
 </body>

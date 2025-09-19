@@ -1,0 +1,33 @@
+{
+  "items": [
+    {
+      "type": "photo",
+      "title": "Eerste foto",
+      "img": "/uploads/foto1.jpg",
+      "desc": "Een testafbeelding",
+      "date": "2025-09-18",
+      "tags": ["poster"]
+    },
+    {
+      "type": "text",
+      "title": "Notitie 1",
+      "body": "Dit is een korte tekst",
+      "date": "2025-09-18",
+      "tags": ["gedachte"]
+    },
+    {
+      "type": "pdf",
+      "title": "Handleiding installatie",
+      "pdf": "/uploads/handleiding.pdf",
+      "date": "2025-09-18",
+      "tags": ["document"]
+    },
+    {
+      "type": "link",
+      "title": "Mijn portfolio",
+      "url": "https://example.com",
+      "date": "2025-09-18",
+      "tags": ["extern"]
+    }
+  ]
+}
