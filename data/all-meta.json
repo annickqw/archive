@@ -1,0 +1,9 @@
+[
+  {
+    "title": "Test Poster",
+    "img": "/uploads/poster1.jpg",
+    "desc": "Dit is een test item",
+    "date": "2025-09-18T00:00:00.000Z",
+    "tags": ["poster", "typo"]
+  }
+]
