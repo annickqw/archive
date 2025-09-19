@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "build:meta": "node build-meta.js",
-    "build": "npm run build:meta && <jouw gewone build command>"
+    "build:meta": "node build-meta.js"
   }
 }
