@@ -71,22 +71,16 @@ async function initArchive() {
       </div>`;
     break;
 
-case "pdf": {
-  // maak een absolute URL naar je PDF
-  const pdfAbs = `${location.origin}${it.pdf}`;
-  // gebruik de online PDF.js viewer van Mozilla (heeft zoom + next/prev)
-  const viewer = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(pdfAbs)}`;
-
+case "pdf":
+  // Maak de hele tile klikbaar en open in nieuw tabblad
   content = `
-    <a data-fancybox data-type="iframe" data-src="${viewer}" href="${it.pdf}" data-caption="${it.title}">
-      <div class="meta">
-        <h3>${it.title}</h3>
-        <p>Klik om PDF te bekijken</p>
-        <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
-      </div>
-    </a>`;
+    <div class="meta">
+      <h3>${it.title}</h3>
+      <p>Klik om PDF te bekijken</p>
+      <small>${it.date || ""} — ${(it.tags || []).join(", ")}</small>
+    </div>`;
+  // laat de return onderaan weten dat dit een speciale wrapper krijgt
   break;
-}
 
   case "link":
     content = `
@@ -101,6 +95,10 @@ case "pdf": {
   default:
     content = `<div class="meta"><h3>${it.title}</h3></div>`;
 }
+const isPdf = it.type === "pdf";
+return isPdf
+  ? `<a class="grid-item ${classes}" href="${it.pdf}" target="_blank" rel="noopener">${content}</a>`
+  : `<div class="grid-item ${classes}">${content}</div>`;
 
 return `<div class="grid-item ${classes}">${content}</div>`;
 
