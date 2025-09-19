@@ -24,48 +24,53 @@
   <div class="grid-sizer"></div>
 </div>
 
-  <!-- Isotope lib -->
 <script>
 async function initArchive() {
-  const res = await fetch('data/all-meta.json');
-  const items = await res.json();
-  const grid = document.querySelector('.grid');
+  try {
+    // laad alle items uit all-meta.json
+    const res = await fetch('data/all-meta.json');
+    const items = await res.json();
+    const grid = document.querySelector('.grid');
 
-  // items HTML opbouwen
-  const html = items.map(it => {
-    const classes = (it.tags || []).map(t => String(t).toLowerCase()).join(' ');
-    return `
-      <div class="grid-item ${classes}">
-        <img src="${it.img}" alt="${it.title}" loading="lazy">
-        <div class="meta">
-          <h3>${it.title}</h3>
-          <p>${it.desc || ''}</p>
-          <small>${it.date || ''} — ${(it.tags || []).join(', ')}</small>
-        </div>
-      </div>`;
-  }).join('');
+    // HTML opbouwen
+    const html = items.map(it => {
+      const classes = (it.tags || []).map(t => String(t).toLowerCase()).join(' ');
+      return `
+        <div class="grid-item ${classes}">
+          <img src="${it.img}" alt="${it.title}" loading="lazy">
+          <div class="meta">
+            <h3>${it.title}</h3>
+            <p>${it.desc || ''}</p>
+            <small>${it.date || ''} — ${(it.tags || []).join(', ')}</small>
+          </div>
+        </div>`;
+    }).join('');
 
-  // NIET overschrijven; append na de bestaande .grid-sizer
-  grid.insertAdjacentHTML('beforeend', html);
+    // Voeg items toe aan grid
+    grid.insertAdjacentHTML('beforeend', html);
 
-  // Wacht tot afbeeldingen gemeten zijn
-  imagesLoaded(grid, () => {
-    const iso = new Isotope(grid, { 
-      itemSelector: '.grid-item',
-      layoutMode: 'masonry',
-      masonry: {
-        columnWidth: '.grid-sizer',
-      }
-    });
+    // Wacht tot alle afbeeldingen geladen zijn
+    imagesLoaded(grid, () => {
+      const iso = new Isotope(grid, {
+        itemSelector: '.grid-item',
+        layoutMode: 'masonry',
+        masonry: {
+          columnWidth: '.grid-sizer',
+        }
+      });
 
-    // filters
-    document.querySelectorAll('.filters [data-filter]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        iso.arrange({ filter: btn.dataset.filter });
+      // filter knoppen activeren
+      document.querySelectorAll('.filters [data-filter]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          iso.arrange({ filter: btn.dataset.filter });
+        });
       });
     });
-  });
+  } catch (err) {
+    console.error("❌ Fout bij laden all-meta.json:", err);
+  }
 }
+
 initArchive();
 </script>
 
