@@ -1,8 +1,7 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: annickqw/archive   # vervang door jouw GitHub repo
   branch: main
-  identity_url: https://archivesite.netlify.app/.netlify/identity
-  gateway_url: https://archivesite.netlify.app/.netlify/git
 
 media_folder: "static/uploads"
 public_folder: "/uploads"

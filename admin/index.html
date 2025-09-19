@@ -5,21 +5,6 @@
   <title>Content Manager</title>
 </head>
 <body>
-  <!-- Netlify Identity -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <!-- Netlify CMS -->
-  <script src="https://unpkg.com/netlify-cms-app/dist/netlify-cms.js"></script>
-
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.open(); // toon login direct
-        }
-      });
-      // ⚠️ geen redirect meer op login, CMS regelt dat zelf
-    }
-  </script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
